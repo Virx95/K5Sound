@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <form id="form">
+        <input  type="file" name="file" id="file" />
+        <input  type="text" name="word" id="word" />
+        <!--<input type="submit">SAVE</input>-->
+    </form>
+    <button onclick="upload()">UPLOAD</button>
+
+    <script>
+        function upload() {
+            var formData = new FormData();
+            formData.append('word', $('#word').val());
+            formData.append('file', $('input[type=file]')[0].files[0]);
+
+            $.ajax({
+                url: "/sound",
+                type: "POST",
+                data: formData,
+                mimeTypes:"multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(){
+                    alert("file successfully submitted");
+                },error: function(){
+                    alert("okey");
+                }
+            });
+        }
+
+
+    </script>
+</body>
+</html>
