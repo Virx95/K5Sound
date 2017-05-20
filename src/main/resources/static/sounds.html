@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,6 @@
             var formData = new FormData();
             formData.append('word', $('#word').val());
             formData.append('file', $('input[type=file]')[0].files[0]);
-
             $.ajax({
                 url: "/sound",
                 type: "POST",
