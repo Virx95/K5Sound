@@ -9,7 +9,7 @@ public class Sound {
     @Id
     private String id;
     private String word;
-    private String filePath;
+    private String url;
 
     public Sound() {}
 
@@ -33,11 +33,11 @@ public class Sound {
         this.word = word;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getUrl() {
+        return url;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
