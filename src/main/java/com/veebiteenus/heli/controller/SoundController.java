@@ -40,8 +40,11 @@ public class SoundController {
         File writable = new File(filepath);
         file.transferTo(writable);
         writable.createNewFile();
-        Sound sound = new Sound(word);
-        sound.setUrl("/uploads/" + file.getOriginalFilename());
+        Sound sound = soundRepository.findByWord(word);
+        if (sound == null) {
+            sound = new Sound(word);
+        }
+        sound.setUrl("/uploads/" + word + "." + file.getOriginalFilename().split("\\.")[1]);
         return soundRepository.save(sound);
     }
 

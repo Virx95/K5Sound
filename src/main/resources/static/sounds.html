@@ -13,13 +13,18 @@
     <form id="form">
         <snap id="sound_name_intro" >Sound name: </snap><input type="text" name="word" id="word" class="form-control"/>
 
-        <input id="add_file" class="btn-file" type="file" name="file" id="file"  style="margin:auto;"/>
-
-        <!--<input type="submit">SAVE</input>-->
+        <input class="btn-file" type="file" name="file" id="add_file" style="margin:auto;"/>
     </form>
-    <button id="save_button" class="btn btn-success btn-lg" onclick="upload()">UPLOAD</button>
+    <button id="save_button" class="btn btn-success btn-lg" onclick="checkIfExist()">UPLOAD</button>
 
+    <div id="confirmation">
+        <p>File already exists! Do you want to override it?</p>
+        <button class="btn btn-success" onclick="upload()">Yes</button><button class="btn btn-danger" onclick="clearForm()">No</button>
+    </div>
+    <h5 id="notification"><strong>Sound successfully uploaded!</strong></h5>
     <script>
+        $('#confirmation').hide()
+        $('#notification').hide()
         function upload() {
             var formData = new FormData();
             formData.append('word', $('#word').val());
@@ -33,11 +38,43 @@
                 cache: false,
                 processData: false,
                 success: function(){
-                    alert("file successfully submitted");
+                    $('#confirmation').hide()
+                    $('#notification').show()
+                    clearForm()
                 },error: function(){
                     alert("File not submitted");
                 }
             });
+        }
+
+        function checkIfExist() {
+            var word = $('#word').val()
+            var file = $('input[type=file]')[0].files[0]
+            if (word === "" || word == null || file == null) {
+                return
+            }
+            $.ajax({
+                url: "/sound/" + word,
+                type: "GET",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                    if (response === "") {
+                        upload()
+                    } else {
+                        $('#confirmation').show()
+                    }
+                },error: function(){
+                    console.log("ERROR with searching");
+                }
+            });
+        }
+
+        function clearForm() {
+            $('#word').val("")
+            $('#add_file').val("")
+            $('#confirmation').hide()
         }
 
 
