@@ -1,0 +1,51 @@
+body{
+    background-color:#F3FAB6;
+    text-align:center;
+
+}
+#form{
+    margin-top:200px;
+}
+#word{
+    margin-bottom:30px;
+    margin:10px;
+    display:inline;
+    width:240px;
+
+}
+
+#sound_name_intro{
+    font-size:180%;
+    font-family: "Lato", Lato, serif;
+    color: #303030;
+ }
+
+#add_file{
+    font-size:150%;
+    font-family: "Lato", Lato, serif;
+    color: #303030;
+}
+#save_button{
+    margin-top:20px;
+    margin-right:100px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}

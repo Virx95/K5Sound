@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
     <form id="form">
-        <input  type="file" name="file" id="file" />
-        <input  type="text" name="word" id="word" />
+        <snap id="sound_name_intro" >Sound name: </snap><input type="text" name="word" id="word" class="form-control"/>
+
+        <input id="add_file" class="btn-file" type="file" name="file" id="file"  style="margin:auto;"/>
+
         <!--<input type="submit">SAVE</input>-->
     </form>
-    <button onclick="upload()">UPLOAD</button>
+    <button id="save_button" class="btn btn-success btn-lg" onclick="upload()">UPLOAD</button>
 
     <script>
         function upload() {
@@ -30,7 +35,7 @@
                 success: function(){
                     alert("file successfully submitted");
                 },error: function(){
-                    alert("okey");
+                    alert("File not submitted");
                 }
             });
         }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <a href="http://localhost:8080/sounds.html">Go to sound page</a>
+    <form id="searchFrom">
+        Sound name: </snap>
+        <input id="searchKeyword"  list="browsers" name="searchWord"/>
+        <datalist id="browsers">
+        </datalist>
+    </form>
+    <button onclick="getVoiceByWord()">Get result</button>
+
+    <p id="search_result"> Nothing has been searched right now</p>
+
+    <script>
+       var input_field = "";
+
+        function getVoiceByWord(){
+            console.log("input field search : " + input_field);
+             $.ajax({
+                url: "/sound/"+input_field,
+                type: "GET",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                        console.log(response);
+                        console.log(response.word);
+                },error: function(){
+                    console.log("ERROR with displaying");
+                }
+            });
+        }
+
+        function getsuggestions() {
+            $.ajax({
+                url: "/search/"+input_field,
+                type: "GET",
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response){
+                    console.log(response);
+                    console.log(response.length);
+
+                     $("#browsers").empty();
+
+                     for (var i=0; i < response.length; i++) {
+                        console.log(response[i].word);
+                        $('#browsers').append("<option value='" + response[i].word + "'>");
+                    }
+
+                },error: function(){
+                    console.log("ERROR with searching");
+                }
+            });
+        }
+
+        function controlIfChanged(){
+
+            if(input_field != $('#searchKeyword').val()){
+                input_field = $('#searchKeyword').val();
+                if(input_field == ""){
+                    $("#browsers").empty();
+                }
+                else{
+                    getsuggestions();
+                }
+                console.log("UUS väärtus" + input_field);
+            }
+            setTimeout(controlIfChanged, 500);
+        }
+
+        setTimeout(controlIfChanged, 500);
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
+</html>
