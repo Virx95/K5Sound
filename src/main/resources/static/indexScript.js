@@ -5,6 +5,10 @@
         function playVoiceRecording(){
             console.log("PRESSED");
             console.log(current_file_url);
+               var res = current_file_url.substring(1, current_file_url.length-1);
+               console.log("RES: " +res);
+            var audio = new Audio(current_file_url);
+            audio.play();
         }
 
         function getVoiceByWord(){
