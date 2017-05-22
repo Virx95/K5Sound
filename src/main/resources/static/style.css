@@ -4,17 +4,28 @@ body{
 
 }
 #form{
-    margin-top:200px;
+    margin-top:100px;
 }
+
+#searchFrom{
+    margin-top:100px;
+}
+
 #word{
     margin-bottom:30px;
+    margin:10px;
+    display:inline;
+    width:240px;
+}
+#searchKeyword{
+ margin-bottom:30px;
     margin:10px;
     display:inline;
     width:240px;
 
 }
 
-#sound_name_intro{
+.sound_name_intro{
     font-size:180%;
     font-family: "Lato", Lato, serif;
     color: #303030;
@@ -48,4 +59,29 @@ body{
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.navigationButton{
+    margin-top:50px;
+    margin-right:300px;
+}
+
+.get-result_button{
+    margin-right:200px;
+}
+
+#search_result{
+    margin-top:50px;
+    font-size:250%;
+    font-family: "Lato", Lato, serif;
+    color: #303030;
+}
+
+#result_div{
+    display:inline;
+}
+
+#play_sound{
+    width:80px;
+    height:80px;
 }

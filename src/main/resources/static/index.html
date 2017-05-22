@@ -9,18 +9,18 @@
 </head>
 <body>
 
-    <a href="http://localhost:8080/sounds.html">Go to sound page</a>
+    <a href="http://localhost:8080/sounds.html" class="btn-primary btn btn-lg navigationButton">Go to sound page</a>
     <form id="searchFrom">
-        Sound name: </snap>
-        <input id="searchKeyword"  list="browsers" name="searchWord"/>
+        <span class="sound_name_intro">Sound name: </span>
+        <input id="searchKeyword" class="form-control" list="browsers" name="searchWord"/>
         <datalist id="browsers">
         </datalist>
     </form>
-    <button onclick="getVoiceByWord()">Get result</button>
-
+    <button onclick="getVoiceByWord()" class="get-result_button btn-success btn">Get result</button>
+<dev id="result_div">
     <p id="search_result"> Nothing has been searched right now</p>
-    <button id="play_sound" onclick="playVoiceRecording()">Play sound</button>
-
+    <img src="audio.png" alt="some_text" id="play_sound" onclick="playVoiceRecording()">
+</dev>
     <script src="indexScript.js"></script>
 
 </body>
